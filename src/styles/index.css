@@ -1,0 +1,12 @@
+.app-container {
+    display: flex;
+    min-height: calc(100vh - 80px); /* 60px - это примерная высота вашего хедера. Замените это значение на реальную высоту вашего хедера */
+}
+
+.LeftNavBar {
+    width: 200px;
+}
+
+.main-content {
+    flex-grow: 1;
+}
