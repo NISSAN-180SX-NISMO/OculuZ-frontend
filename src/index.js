@@ -12,14 +12,14 @@ import VideoPreview from "./components/VideoPreview";
 import VideoList from "./components/VideoList";
 
 let videos = Array(50).fill({
-    previewUrl: "https://imgur.com/ajAYUT3.jpg",
+    previewUrl: "https://images.wallpaperscraft.ru/image/single/gory_trava_zabor_120048_1920x1080.jpg",
     avatarUrl: "https://sun9-80.userapi.com/impg/BhSVyLt-RmReWl2LgrV7s9qHu-5wxCuv-vERtw/OkkI8TXJSCw.jpg?size=2048x2048&quality=95&sign=184e3f64972ca71247bc7997892031a8&type=album",
     title: "Разводные мосты в Санкт-Петербурге",
     channelName: "Студент ГУАПа LIVE",
     publishTime: "16:34",
     duration: "24:23",
-    //videoURL: "https://i.imgur.com/VzyhsXj.mp4"
-    videoURL: "https://vk.com/video_ext.php?oid=-34404956&id=456241721&hash=e2828e97d9709698"
+    videoURL: "https://imgur.com/GrIZ9nu.mp4"
+
 });
 
 
