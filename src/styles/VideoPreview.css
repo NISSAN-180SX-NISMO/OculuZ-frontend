@@ -1,0 +1,68 @@
+.video-preview-container {
+    position: relative;
+    width: 320px; /* Ширина может быть изменена в соответствии с вашим дизайном */
+    height: 248px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    margin: 5px
+}
+
+.video-preview-thumbnail {
+    width: 100%;
+    height: 180px;
+    display: block;
+    border-top-left-radius: 7px !important;
+    border-top-right-radius: 7px !important;
+}
+
+.video-preview-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.3); /* Полупрозрачный фон для текста на превью */
+    color: white;
+    padding: 8px;
+    border-bottom-left-radius: 7px !important;
+    border-bottom-right-radius: 7px !important;
+}
+
+.video-preview-metadata {
+    display: flex;
+    align-items: center;
+}
+
+.video-preview-avatar {
+    width: 30px; /* Размер аватара */
+    height: 30px;
+    border-radius: 50%; /* Делаем аватар круглым */
+    margin-right: 8px;
+}
+
+.video-preview-text {
+    flex-grow: 1;
+}
+
+.video-preview-title {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.video-preview-channel,
+.video-preview-publish-time {
+    font-size: 0.7rem;
+    color: rgb(204, 204, 204);
+    margin: 0;
+}
+
+.video-preview-duration {
+    position: absolute;
+    top: -30px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон для длительности видео */
+    color: white;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-size: 0.8rem;
+}
