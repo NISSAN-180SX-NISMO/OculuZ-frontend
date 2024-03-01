@@ -5,7 +5,7 @@
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    margin: 5px
+    margin: 5px;
 }
 
 .video-preview-thumbnail {
@@ -26,11 +26,14 @@
     padding: 8px;
     border-bottom-left-radius: 7px !important;
     border-bottom-right-radius: 7px !important;
+
+
 }
 
 .video-preview-metadata {
     display: flex;
     align-items: center;
+
 }
 
 .video-preview-avatar {
@@ -42,6 +45,11 @@
 
 .video-preview-text {
     flex-grow: 1;
+    white-space: nowrap; /* Указывает, что весь текст должен быть в одну строку */
+    overflow: hidden; /* Обрезает текст, если он выходит за пределы блока */
+    text-overflow: ellipsis; /* Добавляет многоточие в конце обрезанного текста */
+    margin-right: 7px; /* Отступ справа для создания пространства перед многоточием */
+
 }
 
 .video-preview-title {

@@ -4,4 +4,11 @@
     grid-template-rows: repeat(10, 1fr);
     gap: 10px;
     margin: 5px;
+    height: calc(100vh - 95px); /* Высота равна высоте видимой области */
+    overflow-y: auto; /* Включаем вертикальную прокрутку */
+    scrollbar-width: none; /* Для Firefox */
+}
+
+.video-list-container::-webkit-scrollbar {
+    display: none; /* Убираем полосу прокрутки у Chrome */
 }
