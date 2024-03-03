@@ -10,6 +10,9 @@ import Header from "./components/Header";
 import LeftNavBar from "./components/LeftNavBar";
 import VideoPreview from "./components/VideoPreview";
 import VideoList from "./components/VideoList";
+import VideoUploadForm from "./components/VideoUploadForm";
+import LoginForm from "./components/LoginForm";
+import RegistrationForm from "./components/RegistrationForm";
 
 let videos = Array(50).fill({
     previewUrl: "https://images.wallpaperscraft.ru/image/single/gory_trava_zabor_120048_1920x1080.jpg",
@@ -29,6 +32,9 @@ root.render(
         <React.StrictMode>
             <Routes>
                 <Route path="/video/:videoURL" element={<VideoPage/>}/>
+                <Route path="/upload" element={<VideoUploadForm/>}/>
+                <Route path="/login" element={<LoginForm/>}/>
+                <Route path="/registration" element={<RegistrationForm/>}/>
                 <Route path="/" element={
                     <>
                         <Header/>

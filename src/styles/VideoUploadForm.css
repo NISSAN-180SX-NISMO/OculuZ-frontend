@@ -1,0 +1,65 @@
+.video-upload-form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #333; /* темный фон */
+    color: #fff; /* белый текст */
+}
+
+.file-upload-button {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: #444; /* чуть светлее фон кнопки */
+    border: none;
+    color: #fff;
+}
+
+.upload-progress {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    /* Предположим, что прогресс загрузки будет прогресс-баром */
+}
+
+.video-link,
+.video-duration {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    margin-top: 0.5rem;
+}
+
+.video-title-input,
+.video-description-input {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    padding: 0.5rem;
+    background-color: #444;
+    border: none;
+    color: #fff;
+}
+
+.publish-button {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    padding: 0.5rem;
+    background-color: #5c5; /* ярко-зеленый, как пример */
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Дополнительные стили для улучшения видимости прогресса загрузки */
+.upload-progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #555;
+}
+
+.upload-progress-bar-value {
+    height: 100%;
+    background-color: #22dd22; /* ярко-зеленый цвет */
+    width: 0%; /* Значение изменится динамически */
+}

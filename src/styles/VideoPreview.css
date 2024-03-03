@@ -12,6 +12,7 @@
     width: 100%;
     height: 180px;
     display: block;
+    background-color: #8a8a8a; /* Цвет фона для видео без обложки */
     border-top-left-radius: 7px !important;
     border-top-right-radius: 7px !important;
 }
