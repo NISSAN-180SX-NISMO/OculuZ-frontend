@@ -1,0 +1,28 @@
+/* Sidebar.css */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    min-width: 250px;
+    height: 100%;
+    background: #2A2A2AFF;
+    transform: translateX(100%);
+    transition: transform 0.2s ease-out;
+    z-index: 100;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+    z-index: 100;
+}
+
+.welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #6427ec;
+    padding: 20px 10px;
+    font-family: "JetBrains Mono", monospace;
+
+}

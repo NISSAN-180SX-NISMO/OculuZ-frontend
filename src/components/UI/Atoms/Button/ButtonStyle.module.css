@@ -1,0 +1,20 @@
+.btnBody {
+    color: white;
+    background-color: #6427ec;
+    border: 1px solid transparent; /* Добавьте прозрачную границу */
+    box-sizing: border-box; /* Указывает, что размеры включают padding и border */
+    padding: 10px 20px;
+    transition: background-color 0.1s ease, color 0.1s ease;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.btnBody:hover {
+    border: 1px #6427ec solid;
+    background-color: rgb(0,0,0,0);
+    cursor: pointer;
+}
+
+.btnBody:active {
+    background-color: #6427ec;
+
+}

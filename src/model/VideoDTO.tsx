@@ -23,7 +23,7 @@ class VideoPage {
     ) {}
 }
 
-class VideoMiniature {
+class VideoPreview {
     constructor(
         public id: string,
         public previewUrl: string,
@@ -37,4 +37,4 @@ class VideoMiniature {
     ) {}
 }
 
-export { VideoPage, VideoMiniature };
+export { VideoPage, VideoPreview };
