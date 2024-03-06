@@ -2,7 +2,7 @@
 .videoPreviewBody {
     display: flex;
     flex-direction: column;
-    width: 320px;
+    width: 100%;
     color: white;
 }
 

@@ -21,20 +21,25 @@ class VideoPage {
         public dislikes: number,
         public commentBranchId: number
     ) {}
+
+    update(data: Partial<VideoPage>) {
+        Object.assign(this, data);
+    }
 }
 
-class VideoPreview {
-    constructor(
-        public id: string,
-        public previewUrl: string,
-        public channelAvatarUrl: string,
-        public videoUrl: string,
-        public title: string,
-        public channelName: string,
-        public duration: number,
-        public uploadDate: Date,
-        public views: number
-    ) {}
+class VideoPreviewDTO {
+    constructor(data: Partial<VideoPreviewDTO>) {
+        Object.assign(this, data);
+    }
+    public id: string;
+    public previewUrl: string;
+    public channelAvatarUrl: string;
+    public videoUrl: string;
+    public title: string;
+    public channelName: string;
+    public duration: number;
+    public uploadDate: Date;
+    public views: number;
 }
 
-export { VideoPage, VideoPreview };
+export { VideoPage, VideoPreviewDTO };

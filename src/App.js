@@ -24,6 +24,8 @@ function App() {
         window.location.href = '/'; // обновляем страницу, переходя на корневую страницу сайта
     }
 
+
+
     useEffect(() => {
         const token = localStorage.getItem('authToken');
         if (token && !isTokenExpired(token)) {

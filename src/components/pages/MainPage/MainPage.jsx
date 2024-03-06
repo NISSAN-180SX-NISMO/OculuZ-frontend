@@ -3,21 +3,22 @@ import Header from "../../UI/Blocks/Header/Header";
 import styles from './MainPageStyle.module.css';
 import Navbar from "../../UI/Blocks/Navbar/Navbar";
 import VideoGrid from "../../UI/Blocks/Video/VideoGrid/VideoGrid";
+import {apiService} from "../../../services/apiService";
+import {VideoPreviewDTO} from "../../../model/VideoDTO.tsx";
+import VideoPreview from "../../UI/Blocks/Video/VideoPreview/VideoPreview";
 
 const MainPage = () => {
-    const [videos, setVideos] = useState([]);
+    const [videos : VideoPreviewDTO, setVideos] = useState([]);
 
     useEffect(() => {
-        // Замените 'videos.json' на актуальный путь к вашему файлу
         const fetchVideos = async () => {
             try {
-                const response = await fetch('./requests/videos.json');
+                const response = await apiService.getVideoList();
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    console.error('Network response was not ok');
                 }
                 const data = await response.json();
-                setVideos(data);
-                console.log(videos)
+                setVideos(data.map(video => new VideoPreviewDTO({ ...video })));
             } catch (error) {
                 console.error("Ошибка при загрузке видео:", error);
             }

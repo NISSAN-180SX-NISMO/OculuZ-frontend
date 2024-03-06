@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './VideoPreview.module.css';
 import {formatDistance, parseISO, differenceInDays, differenceInHours, differenceInMinutes} from 'date-fns';
 import {ru} from 'date-fns/locale';
+import {VideoPreviewDTO} from "../../../../../model/VideoDTO.tsx";
 
 const formatPublicationDate = (uploadDate) => {
     const now = new Date();
@@ -42,25 +43,33 @@ const formatVideoDuration = (durationStr) => {
     return formattedDuration.join(' ');
 };
 
+interface VideoPreviewProps {
+    video: VideoPreviewDTO;
+};
 
-
-const VideoPreview = ({videoData}) => {
+const VideoPreview : React.FC<VideoPreviewProps> = ({video}) => {
     return (
         <div className={styles.videoPreviewBody}>
             <div className={styles.preview}>
-                <img src={videoData.previewUrl} alt="Video thumbnail" className={styles.thumbnailImage}/>
-                <div className={styles.videoDuration}>{formatVideoDuration(videoData.duration)}</div>
+                <picture>
+                    <source srcSet={video.previewUrl}/>
+                    <img
+                        className={styles.thumbnailImage}
+                        src='../../../../../../public/resources/defaultPreview.jpeg'
+                    />
+                </picture>
+                <div className={styles.videoDuration}>{formatVideoDuration(video.duration)}</div>
             </div>
             <div className={styles.videoInfo}>
                 <div className={styles.videoTitleBody}>
-                    <div className={styles.videoTitle}>{videoData.title}</div>
+                    <div className={styles.videoTitle}>{video.title}</div>
                 </div>
                 <div className={styles.channelInfo}>
-                    <img src={videoData.channelAvatarUrl} alt="Channel avatar" className={styles.channelAvatar}/>
+                    <img src={video.channelAvatarUrl} alt="Channel avatar" className={styles.channelAvatar}/>
                     <span className={styles.videoStatsBody}>
-                        <div className={styles.channelName}>{videoData.channelName}</div>
-                        <div className={styles.videoStats}>{videoData.views} просмотров</div>
-                        <div className={styles.videoStats}>{formatPublicationDate(videoData.uploadDate)} назад</div>
+                        <div className={styles.channelName}>{video.channelName}</div>
+                        <div className={styles.videoStats}>{video.views} просмотров</div>
+                        <div className={styles.videoStats}>{formatPublicationDate(video.uploadDate)} назад</div>
                     </span>
                 </div>
             </div>

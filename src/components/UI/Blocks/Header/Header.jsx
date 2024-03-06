@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from './HeaderStyle.module.css';
 import Logo from "../../Atoms/Logo/Logo";
 import SearchComponent from "../../Atoms/SearchComponent/SearchComponent";
 import IconButton from "../../Atoms/IconButton/IconButton";
 import Sidebar from "../Sidebar/Sidebar";
-import LogoAlt from "../../Atoms/Logo/LogoAlt"; // Импортируйте Sidebar
+import LogoAlt from "../../Atoms/Logo/LogoAlt";
+import {AuthContext} from "../../../../context"; // Импортируйте Sidebar
 
 const Header = () => {
+    const {isAuth} = useContext(AuthContext);
 
     const testPredicate = () => {
         return true;
@@ -32,7 +34,7 @@ const Header = () => {
             </div>
             <div className={styles.navigateButtons}>
                 {
-                    testPredicate() &&
+                    isAuth &&
                     <IconButton iconPath={"./resources/downloadIconButton.png"} alt={"videoUpload"}/>
                 }
                 <IconButton iconPath={"./resources/bellIconButton.png"} alt={"notifies"}/>

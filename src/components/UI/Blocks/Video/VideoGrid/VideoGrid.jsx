@@ -1,12 +1,18 @@
 import React from 'react';
 import styles from './VideoGrid.module.css';
 import VideoPreview from "../VideoPreview/VideoPreview";
+import {VideoPreviewDTO} from "../../../../../model/VideoDTO.tsx";
 
-const VideoGrid = ({ videos }) => {
+interface VideoGridProps {
+    videos: VideoPreviewDTO[];
+};
+
+
+const VideoGrid: React.FC<VideoGridProps> = ({ videos }) => {
     return (
         <div className={styles.gridContainer}>
             {videos.map((video) => (
-                <VideoPreview videoData={video} />
+                <VideoPreview  key={video.id} video={video} />
             ))}
         </div>
     );
