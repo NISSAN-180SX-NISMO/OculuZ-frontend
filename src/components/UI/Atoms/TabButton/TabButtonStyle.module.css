@@ -1,0 +1,31 @@
+.btnBody {
+    padding: 10px 30px;
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    box-sizing: border-box; /* Указывает, что размеры включают padding и border */
+    background-color: rgba(0,0,0,0);
+    transition: background-color 0.1s ease, color 0.1s ease;
+    border-left: rgba(100, 39, 236, 0.3) 1px solid;
+    border-right: rgba(100, 39, 236, 0.3) 1px solid;
+    border-top: none;
+    border-bottom: rgba(100, 39, 236, 0.3) 1px solid;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.btnBody:hover {
+    background-color: #6427ec;
+    color: white;
+    cursor: pointer;
+}
+
+.active {
+    background-color: #6427ec;
+    color: white;
+    border-left: #6427ec 1px solid;
+    border-right: #6427ec 1px solid;
+    border-bottom: #6427ec 1px solid;
+}

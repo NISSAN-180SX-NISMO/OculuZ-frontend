@@ -9,9 +9,9 @@ class ApiService {
         }));
     }
 
-    async get(url, params = {}) {
+    async get(url, params = {}, headers = {}) {
         const query = new URLSearchParams(params).toString();
-        return (await fetch(`${url}?${query}`));
+        return (await fetch(`${url}?${query}`, { headers }));
     }
 
     async getAuth(username, password) {
@@ -25,6 +25,12 @@ class ApiService {
     async getVideoList(username = null) {
         const params = username ? { username } : {};
         return this.get('./requests/videos.json', params);
+    }
+
+    async getCurrentUser() {
+        const token = localStorage.getItem('authToken');
+        const headers = token ? { 'Authorization': `${token}` } : {};
+        return this.get('http://localhost:8080/user', {}, headers);
     }
 }
 

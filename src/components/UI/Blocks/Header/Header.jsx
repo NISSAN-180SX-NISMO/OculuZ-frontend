@@ -9,11 +9,6 @@ import {AuthContext} from "../../../../context"; // Импортируйте Sid
 
 const Header = () => {
     const {isAuth} = useContext(AuthContext);
-
-    const testPredicate = () => {
-        return true;
-    };
-
     const [isSidebarOpen, setSidebarOpen] = useState(false);
 
     const handleButtonClick = () => {
@@ -27,7 +22,7 @@ const Header = () => {
     };
 
     return (
-        <div className={styles.headerBody}>
+        <header className={styles.headerBody}>
             <LogoAlt/>
             <div className={styles.searchComponent}>
                 <SearchComponent />
@@ -35,14 +30,14 @@ const Header = () => {
             <div className={styles.navigateButtons}>
                 {
                     isAuth &&
-                    <IconButton iconPath={"./resources/downloadIconButton.png"} alt={"videoUpload"}/>
+                    <IconButton iconPath={"/resources/downloadIconButton.png"} alt={"videoUpload"}/>
                 }
-                <IconButton iconPath={"./resources/bellIconButton.png"} alt={"notifies"}/>
-                <IconButton onClick={handleButtonClick} iconPath={"./resources/userMenuIconButton.png"} alt={"userMenu"}/>
+                <IconButton iconPath={"/resources/bellIconButton.png"} alt={"notifies"}/>
+                <IconButton onClick={handleButtonClick} iconPath={"/resources/userMenuIconButton.png"} alt={"userMenu"}/>
                 {isSidebarOpen && <div className={styles.overlay} onClick={handleSidebarClose}></div>}
             </div>
             <Sidebar isOpen={isSidebarOpen} onClose={handleSidebarClose} />
-        </div>
+        </header>
     );
 };
 

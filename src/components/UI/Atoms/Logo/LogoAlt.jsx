@@ -5,7 +5,7 @@ import styles from './LogoAltStyle.module.css'; // Импортируйте ст
 const Logo = () => {
     return (
         <Link to="/" className={styles.logoContainer}>
-            <img src={"./resources/OculuZLogo_v2.png"} alt="Logo" className={styles.logoImg} />
+            <img src={"/resources/OculuZLogo_v2.png"} alt="Logo" className={styles.logoImg} />
         </Link>
     );
 };

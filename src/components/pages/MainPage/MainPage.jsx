@@ -5,7 +5,6 @@ import Navbar from "../../UI/Blocks/Navbar/Navbar";
 import VideoGrid from "../../UI/Blocks/Video/VideoGrid/VideoGrid";
 import {apiService} from "../../../services/apiService";
 import {VideoPreviewDTO} from "../../../model/VideoDTO.tsx";
-import VideoPreview from "../../UI/Blocks/Video/VideoPreview/VideoPreview";
 
 const MainPage = () => {
     const [videos : VideoPreviewDTO, setVideos] = useState([]);

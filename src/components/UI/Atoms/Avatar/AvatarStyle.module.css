@@ -1,0 +1,15 @@
+.avatarBody {
+    box-sizing: border-box;
+    border: 2px solid #6327ea;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar {
+    box-sizing: border-box;
+    border: 5px solid #2A2A2AFF;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}

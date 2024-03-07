@@ -3,11 +3,12 @@ import styles from './SidebarStyle.module.css';
 import {jwtDecode} from 'jwt-decode';
 import {AuthContext} from '../../../../context';
 import ItemButton from "../../Atoms/ItemButton/ItemButton";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Sidebar = ({isOpen, onClose}) => {
     const {isAuth, logout} = useContext(AuthContext);
     const [username, setUsername] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
@@ -17,31 +18,30 @@ const Sidebar = ({isOpen, onClose}) => {
         }
     }, []);
 
-
+    const handleRedirect = (path) => {
+        onClose();
+        navigate(path);
+    };
 
     return (
         <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
             {isAuth ? (
                 <>
-                    <div className={styles.welcome}>Welcome, {username}</div>
-
-                    <ItemButton>Мой аккаунт</ItemButton>
-                    <ItemButton>Мои каналы</ItemButton>
+                    <div className={styles.welcome}>Привет, {username}! (｡◕‿◕｡)</div>
+                    <ItemButton onClick={() => handleRedirect(`/user/${username}`)}>Мой аккаунт</ItemButton>
+                    <ItemButton onClick={() => handleRedirect(`/user/${username}/channels`)}>Мои каналы</ItemButton>
                     <ItemButton onClick={logout}>Выход</ItemButton>
                 </>
             ) : (
                 <>
-                    <div className={styles.welcome}>Вы не вошли в свой аккаунт</div>
-                    <Link to={'/login'}>
-                        <ItemButton>Вход</ItemButton>
-                    </Link>
-                    <Link to={'/regist'}>
-                        <ItemButton>Регистрация</ItemButton>
-                    </Link>
+                    <div className={styles.welcome}>Вы не вошли в свой аккаунт ┌(ಠ_ಠ)┘</div>
+                    <ItemButton onClick={() => handleRedirect('/login')}>Вход</ItemButton>
+                    <ItemButton onClick={() => handleRedirect('/regist')}>Регистрация</ItemButton>
                 </>
             )}
         </div>
     );
 };
+
 
 export default Sidebar;

@@ -32,13 +32,15 @@ function App() {
             setIsAuth(true);
             localStorage.setItem('isAuth', 'true');
             console.log('auth true');
+            console.log(token);
         } else {
             setIsAuth(false);
             localStorage.setItem('isAuth', 'false');
             console.log('auth false');
+            console.log(token);
         }
         setLoading(false);
-    }, []);
+    });
 
     return (
         <AuthContext.Provider value={{

@@ -1,0 +1,32 @@
+.headerAndTabBar {
+    background: linear-gradient(360deg, #2e1c50 0%, #2a2a2a 100%);
+    margin-right: 10px;
+}
+
+.tabBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2a2a2a;
+    height: 30px;
+}
+
+.tabBar > button {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.userPayload {
+    background-color: #2a2a2a;
+    height: calc(100vh - 280px);
+    padding: 10px;
+    margin-right: 10px;
+
+
+
+    color: white;
+    font-family: "JetBrains Mono", monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
