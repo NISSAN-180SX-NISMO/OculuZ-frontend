@@ -1,0 +1,10 @@
+.notFoundBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 110px);
+    width: 100%;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 32px;
+    color: white;
+}

@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './IconButtonStyle.module.css';
 
-const IconButton = ({ iconPath, alt, onClick }) => {
+const IconButton = ({iconPath = "none", alt, onClick, ...props}) => {
     const handleClick = (event) => {
         event.stopPropagation();
         if (onClick) {
@@ -12,7 +12,13 @@ const IconButton = ({ iconPath, alt, onClick }) => {
 
     return (
         <div className={styles.btnBody} onClick={handleClick}>
-            <img src={iconPath} alt={alt} className={styles.icon} />
+            {
+                iconPath === "none" ?
+                    props.children
+                    :
+                    <img src={iconPath} alt={alt} className={styles.icon}/>
+            }
+
         </div>
     );
 };

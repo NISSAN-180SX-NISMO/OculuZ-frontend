@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import styles from './AuthPage.module.css'
 import Input from "../../UI/Atoms/Input/Input";
 import Button from "../../UI/Atoms/Button/Button";
@@ -8,6 +8,7 @@ import { apiService } from "../../../services/apiService"
 import { jwtDecode } from 'jwt-decode';
 
 import { useNavigate } from 'react-router-dom';
+import {AuthContext} from "../../../context";
 
 
 const RegistPage = () => {
@@ -15,7 +16,7 @@ const RegistPage = () => {
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
+    const {login} = useContext(AuthContext);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -23,9 +24,7 @@ const RegistPage = () => {
         const data = await response.json(); // Save the response body
         console.log(response.status);
         if (response.status === 200) {
-            const token = response.headers.get('Authorization')
-            localStorage.setItem('authToken', token);
-            navigate('/');
+            login(response.headers.get('Authorization'))
         } else {
             setError(data.message); // Use the saved response body
         }

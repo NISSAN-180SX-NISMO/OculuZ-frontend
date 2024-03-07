@@ -32,6 +32,10 @@ class ApiService {
         const headers = token ? { 'Authorization': `${token}` } : {};
         return this.get('http://localhost:8080/user', {}, headers);
     }
+
+    async getUserByUsername(username) {
+        return this.get(`http://localhost:8080/user/${username}`);
+    }
 }
 
 export const apiService = new ApiService();
