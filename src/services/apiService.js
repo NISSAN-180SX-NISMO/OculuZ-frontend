@@ -36,6 +36,10 @@ class ApiService {
     async getUserByUsername(username) {
         return this.get(`http://localhost:8080/user/${username}`);
     }
+
+    async getChannelByName(channelName) {
+        return this.get(`http://localhost:8080/channel/${channelName}`);
+    }
 }
 
 export const apiService = new ApiService();

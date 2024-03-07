@@ -1,0 +1,61 @@
+.channelHeadHeader {
+    width: 100%;
+    height: 12.5%;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+}
+
+.channelHeadBody {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.channelInfoBody {
+    /*margin-top: -50px;*/
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 200px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+
+}
+
+.channelInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100px;
+    margin-left: 20px;
+}
+
+.channelName {
+    font-size: 24px;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    margin: 0;
+    color: white;
+}
+
+.registDate {
+    font-size: 12px;
+    font-family: "JetBrains Mono", monospace;
+    margin: 0;
+    color: #bbbaba;
+}
+
+.channelStats {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    color: gray;
+    font-size: 14px;
+    margin-top: 5px;
+    font-family: "JetBrains Mono", monospace;
+}

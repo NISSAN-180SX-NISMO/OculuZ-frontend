@@ -4,6 +4,7 @@ import LoginPage from "../components/pages/Auth/LoginPage";
 import RegistPage from "../components/pages/Auth/RegistPage";
 import NotFoundPage from "../components/pages/NotFoundPage/NotFoundPage";
 import UserPageWrapper from "../components/pageWrappers/UserPageWrapper";
+import ChannelPageWrapper from "../components/pageWrappers/ChannelPageWrapper";
 
 
 
@@ -12,6 +13,11 @@ export const publicRoutes = [
     {
         path: '/user/:username/:tab?',
         element: <UserPageWrapper />,
+        exact: true
+    },
+    {
+        path: '/channel/:name/:tab?',
+        element: <ChannelPageWrapper />,
         exact: true
     },
     {path: '/login', element: <LoginPage/>, exact: true},
