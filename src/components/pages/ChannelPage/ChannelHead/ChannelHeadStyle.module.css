@@ -25,6 +25,13 @@
 
 }
 
+.channelInfoAndSubscribeButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 90vh;
+}
+
 .channelInfo {
     display: flex;
     flex-direction: column;

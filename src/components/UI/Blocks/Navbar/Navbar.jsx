@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './NavbarStyle.module.css';
 import ItemButton from "../../Atoms/ItemButton/ItemButton";
 import {useNavigate} from "react-router-dom";
@@ -9,7 +9,7 @@ const getUsername = () => {
 
     if (token) {
         const decodedToken = jwtDecode(token);
-        return decodedToken.username;
+        return decodedToken.sub;
     } else {
         return null;
     }
@@ -19,10 +19,15 @@ const getUsername = () => {
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const username = getUsername();
+    const [username, setUsername] = useState(localStorage.getItem('username') || null);
+
+    useEffect(() => {
+        setUsername(localStorage.getItem('username') || null);
+    }, [localStorage]);
+
     const handleRedirect = (path) => {
         if (username === null) {
-            navigate('/login');
+            navigate(`/login?redirect=${window.location.pathname}`);
         } else {
             navigate(path);
         }

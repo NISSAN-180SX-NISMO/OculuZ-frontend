@@ -1,10 +1,11 @@
 
 class UserPageDTO {
-    constructor(data: Partial<UserPageDTO>) {
+    constructor(data: any) {
         Object.assign(this, data);
     }
     public id: number = 0;
     public username: string = '';
+    public email: string = '';
     public accessPermission: string = '';
     public banned: boolean = false;
     public banEndDate: string = '';

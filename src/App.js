@@ -3,6 +3,8 @@ import { jwtDecode } from 'jwt-decode';
 import { AuthContext } from './context';
 import AppRouter from "./components/AppRouter";
 import {BrowserRouter} from "react-router-dom";
+import {AuthService} from "./services/AuthService";
+import {LoginRequest, SignupRequest} from "./model/AuthDTO.tsx";
 
 function App() {
     const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth') === 'true');
@@ -14,33 +16,44 @@ function App() {
         return decodedToken.exp < currentTime;
     };
 
-    const logout = () => {
-        localStorage.removeItem('authToken');
-        window.location.href = '/'; // обновляем страницу, переходя на корневую страницу сайта
+    const logout = async (redirect = '/') => {
+        await AuthService.signout();
+        for (let key in localStorage) {
+            console.log(key + ' = ' + localStorage[key]);
+        }
+        window.location.href = redirect || '/';
     };
 
-    const login = (token) => {
-        localStorage.setItem('authToken', token);
-        window.location.href = '/'; // обновляем страницу, переходя на корневую страницу сайта
+    const login = async (loginRequest: LoginRequest, redirect = '/') => {
+        await AuthService.signin(loginRequest);
+        window.location.href = redirect || '/';
     }
 
-
+    const signup = async (signupRequest: SignupRequest, redirect = '/') => {
+        const response = await AuthService.signup(signupRequest);
+        if (response.status === 200) {
+            login(new LoginRequest({username: signupRequest.username, password: signupRequest.password}), redirect);
+        }
+    }
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
         if (token && !isTokenExpired(token)) {
+            const decodedToken = jwtDecode(token);
+            console.log('App component: auth true for:');
+            console.log('User name:', decodedToken.sub);
+            console.log('Token issued at:', new Date(decodedToken.iat * 1000));
+            console.log('Token expires at:', new Date(decodedToken.exp * 1000));
+
             setIsAuth(true);
             localStorage.setItem('isAuth', 'true');
-            console.log('auth true');
-            console.log(token);
         } else {
             setIsAuth(false);
             localStorage.setItem('isAuth', 'false');
-            console.log('auth false');
-            console.log(token);
+            console.log('App component: auth false');
         }
         setLoading(false);
-    });
+    }, [localStorage]);
 
     return (
         <AuthContext.Provider value={{
@@ -48,7 +61,8 @@ function App() {
             setIsAuth,
             isLoading,
             logout,
-            login
+            login,
+            signup
         }}>
             <BrowserRouter>
                 <AppRouter/>

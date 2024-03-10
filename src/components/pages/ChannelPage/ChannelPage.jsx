@@ -3,11 +3,7 @@ import Header from "../../UI/Blocks/Header/Header";
 import MainStyles from "../MainPage/MainPageStyle.module.css";
 import Navbar from "../../UI/Blocks/Navbar/Navbar";
 import styles from "./ChannelPageStyle.module.css";
-import UserHead from "../UserPage/UserHead/UserHead";
 import TabButton from "../../UI/Atoms/TabButton/TabButton";
-import UserInfo from "../UserPage/UserInfo/UserInfo";
-import UserPlaylists from "../UserPage/UserPlaylists/UserPlaylists";
-import UserSubscriptions from "../UserPage/UserSubscriptions/UserSubscriptions";
 import {ChannelPageDTO} from "../../../model/ChannelDTO.tsx";
 import {jwtDecode} from "jwt-decode";
 import {useNavigate, useParams} from "react-router-dom";
@@ -27,7 +23,6 @@ const ChannelPage = ({data}) => {
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
-
         if (token) {
             const decodedToken = jwtDecode(token);
             setUsernameFromToken(decodedToken.username);
@@ -37,11 +32,6 @@ const ChannelPage = ({data}) => {
     useEffect(() => {
         setActiveTab(tab || 'videos');
     }, [tab]);
-
-
-    useEffect(() => {
-        console.log(channel);          // todo remove
-    }, [channel]);
 
     return (
         <div>
@@ -55,7 +45,8 @@ const ChannelPage = ({data}) => {
                                 avatarUrl={channel.avatarUrl}
                                 headerUrl={channel.headerUrl}
                                 registDate={channel.registDate}
-                                username={channel.name}
+                                username={usernameFromToken}
+                                channelName={channel.name}
                                 videosCount={channel.videosCount}
                                 subscribersCount={channel.subscribersCount}
                             />

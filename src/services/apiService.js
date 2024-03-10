@@ -40,6 +40,30 @@ class ApiService {
     async getChannelByName(channelName) {
         return this.get(`http://localhost:8080/channel/${channelName}`);
     }
+
+    async subscribeUSerToChannel(username, channelName) {
+        const token = localStorage.getItem('authToken');
+        const headers = token ? { 'Authorization': `${token}` } : {};
+        return this.post(`http://localhost:8080/channel/${channelName}/subscribe`, {username, channelName}, headers);
+    }
+
+    async unsubscribeUSerToChannel(username, channelName) {
+        const token = localStorage.getItem('authToken');
+        const headers = token ? { 'Authorization': `${token}` } : {};
+        if (token && username && channelName)
+            return this.post(`http://localhost:8080/channel/${channelName}/unsubscribe`, {username, channelName}, headers);
+        else
+            return Promise.resolve({status: 400});
+    }
+
+    async isUserSubscribed(username, channelName) {
+        const token = localStorage.getItem('authToken');
+        const headers = token ? { 'Authorization': `${token}` } : {};
+        if (token && username && channelName)
+            return this.get(`http://localhost:8080/channel/${channelName}/subscribe`, {username, channelName}, headers);
+        else
+            return Promise.resolve({status: 400});
+    }
 }
 
 export const apiService = new ApiService();

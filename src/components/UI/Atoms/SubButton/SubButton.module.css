@@ -1,0 +1,54 @@
+.btnBody {
+
+}
+
+.btn {
+    color: white;
+    background-color: #6427ec;
+    border: 1px solid transparent; /* Добавьте прозрачную границу */
+    box-sizing: border-box; /* Указывает, что размеры включают padding и border */
+    padding: 10px 20px;
+    transition: background-color 0.1s ease, color 0.1s ease;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.btn:hover {
+    border: 1px #6427ec solid;
+    background-color: rgb(0,0,0,0);
+    cursor: pointer;
+}
+
+.btn:active {
+    background-color: #6427ec;
+
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    font-family: "JetBrains Mono", monospace;
+    margin-top: 5px;
+}
+
+
+
+.subscribedBtn {
+    color: white;
+    background-color: #b7b7b7;
+    border: 1px solid transparent; /* Добавьте прозрачную границу */
+    box-sizing: border-box; /* Указывает, что размеры включают padding и border */
+    padding: 10px 20px;
+    transition: background-color 0.1s ease, color 0.1s ease;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.subscribedBtn:hover {
+    border: 1px #b7b7b7 solid;
+    background-color: rgb(0,0,0,0);
+    cursor: pointer;
+}
+
+.subscribedBtn:active {
+    background-color: #b7b7b7;
+
+}

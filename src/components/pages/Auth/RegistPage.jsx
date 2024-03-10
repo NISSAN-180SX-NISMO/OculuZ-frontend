@@ -3,32 +3,41 @@ import styles from './AuthPage.module.css'
 import Input from "../../UI/Atoms/Input/Input";
 import Button from "../../UI/Atoms/Button/Button";
 import LogoAlt from "../../UI/Atoms/Logo/LogoAlt";
-import {Link} from "react-router-dom";
-import { apiService } from "../../../services/apiService"
-import { jwtDecode } from 'jwt-decode';
+import {Link, useLocation} from "react-router-dom";
 
-import { useNavigate } from 'react-router-dom';
 import {AuthContext} from "../../../context";
+import {SignupRequest} from "../../../model/AuthDTO.tsx";
 
 
 const RegistPage = () => {
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [error, setError] = useState(null);
-    const {login} = useContext(AuthContext);
+    const {signup} = useContext(AuthContext);
+    const location = useLocation();
+    const redirect = new URLSearchParams(location.search).get('redirect');
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await apiService.createAuth(username, password, passwordConfirm);
-        const data = await response.json(); // Save the response body
-        console.log(response.status);
-        if (response.status === 200) {
-            login(response.headers.get('Authorization'))
-        } else {
-            setError(data.message); // Use the saved response body
+        try {
+            signup(new SignupRequest({username, email, role: ['ROLE_USER'], password}),
+                redirect ? redirect : '/');
+        } catch (e) {
+            setError(e.message);
         }
+
     };
+
+    useState(() => {
+        if (password !== passwordConfirm) {
+            setError('Пароли не совпадают!');
+        } else {
+            setError(null);
+        }
+    }, [passwordConfirm])
 
     return (
         <div className={styles.authBody}>
@@ -41,6 +50,13 @@ const RegistPage = () => {
                             type={"text"}
                             value={username}
                             onChange={e => setUsername(e.target.value)}
+                            required={true}
+                        />
+                        <Input
+                            placeholder={"Email"}
+                            type={"email"}
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                             required={true}
                         />
                         <Input
@@ -62,7 +78,7 @@ const RegistPage = () => {
                     <Button>Зарегистрироваться</Button>
                 </form>
                 <div className={styles.registLink}>Уже есть аккаунт?&nbsp;
-                    <Link to={'/login'}>Войдите!</Link>
+                    <Link to={`/login?${redirect ? 'redirect=' + redirect : ''}`}>Войдите!</Link>
                 </div>
             </div>
         </div>

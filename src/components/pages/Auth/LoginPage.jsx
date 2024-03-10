@@ -3,29 +3,26 @@ import styles from './AuthPage.module.css'
 import Input from "../../UI/Atoms/Input/Input";
 import Button from "../../UI/Atoms/Button/Button";
 import LogoAlt from "../../UI/Atoms/Logo/LogoAlt";
-import {Link} from "react-router-dom";
-import { apiService } from "../../../services/apiService"
-import { jwtDecode } from 'jwt-decode';
-
-import { useNavigate } from 'react-router-dom';
+import {Link, redirect, useLocation} from "react-router-dom";
+import {AuthService} from "../../../services/AuthService";
+import {LoginRequest} from "../../../model/AuthDTO.tsx";
 import {AuthContext} from "../../../context";
 
 
 const LoginPage = () => {
+    const {login} = useContext(AuthContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const {login} = useContext(AuthContext);
-
+    const location = useLocation();
+    const redirect = new URLSearchParams(location.search).get('redirect');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await apiService.getAuth(username, password);
-        const data = await response.json(); // Save the response body
-        if (response.status === 200) {
-            login(response.headers.get('Authorization'));
-        } else {
-            setError(data.message); // Use the saved response body
+        try {
+            login(new LoginRequest({username, password}), redirect ? redirect : '/');
+        } catch (e) {
+            setError(e.message);
         }
     };
 
@@ -54,7 +51,7 @@ const LoginPage = () => {
                     <Button>Войти</Button>
                 </form>
                 <div className={styles.registLink}>Нет аккаунта?&nbsp;
-                    <Link to={'/regist'}>Зарегистрируйтесь!</Link>
+                    <Link to={`/regist?${redirect ? 'redirect=' + redirect : ''}`}>Зарегистрируйтесь!</Link>
                 </div>
             </div>
         </div>

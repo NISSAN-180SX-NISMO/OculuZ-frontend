@@ -33,8 +33,10 @@ const UserPage = ({data}) => {
 
         if (token) {
             const decodedToken = jwtDecode(token);
-            setUsernameFromToken(decodedToken.username);
+            setUsernameFromToken(decodedToken.sub);
         }
+
+        console.log(user);
     }, []);
 
     useEffect(() => {
@@ -42,9 +44,7 @@ const UserPage = ({data}) => {
     }, [tab]);
 
 
-    useEffect(() => {
-        console.log(user);          // todo remove
-    }, [user]);
+
 
     return (
         <div>

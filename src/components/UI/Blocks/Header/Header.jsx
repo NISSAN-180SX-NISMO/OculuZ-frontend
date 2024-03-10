@@ -12,12 +12,10 @@ const Header = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
 
     const handleButtonClick = () => {
-        console.log("open")
         setSidebarOpen(!isSidebarOpen);
     };
 
     const handleSidebarClose = () => {
-        console.log("close")
         setSidebarOpen(false);
     };
 
