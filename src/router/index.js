@@ -16,7 +16,7 @@ export const publicRoutes = [
         exact: true
     },
     {
-        path: '/channel/:name/:tab?',
+        path: '/channel/:channelName/:tab?',
         element: <ChannelPageWrapper />,
         exact: true
     },

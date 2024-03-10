@@ -3,8 +3,7 @@ import styles from './AuthPage.module.css'
 import Input from "../../UI/Atoms/Input/Input";
 import Button from "../../UI/Atoms/Button/Button";
 import LogoAlt from "../../UI/Atoms/Logo/LogoAlt";
-import {Link, redirect, useLocation} from "react-router-dom";
-import {AuthService} from "../../../services/AuthService";
+import {Link, useLocation} from "react-router-dom";
 import {LoginRequest} from "../../../model/AuthDTO.tsx";
 import {AuthContext} from "../../../context";
 
@@ -20,8 +19,9 @@ const LoginPage = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            login(new LoginRequest({username, password}), redirect ? redirect : '/');
+            await login(new LoginRequest({username, password}), redirect ? redirect : '/');
         } catch (e) {
+            console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + e.message);
             setError(e.message);
         }
     };

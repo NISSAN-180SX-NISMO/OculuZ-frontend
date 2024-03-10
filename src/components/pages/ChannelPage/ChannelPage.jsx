@@ -27,6 +27,7 @@ const ChannelPage = ({data}) => {
             const decodedToken = jwtDecode(token);
             setUsernameFromToken(decodedToken.username);
         }
+        console.log('channel', channel);
     }, []);
 
     useEffect(() => {
@@ -49,6 +50,7 @@ const ChannelPage = ({data}) => {
                                 channelName={channel.name}
                                 videosCount={channel.videosCount}
                                 subscribersCount={channel.subscribersCount}
+                                isSubscribed={channel.isSubscribed}
                             />
                             <div className={styles.tabBar}>
                                 <TabButton onClick={() => navigate(`/channel/${channel.name}/videos`)}

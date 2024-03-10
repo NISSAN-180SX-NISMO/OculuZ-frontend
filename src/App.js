@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
-import { AuthContext } from './context';
+import React, {useState, useEffect} from 'react';
+import {jwtDecode} from 'jwt-decode';
+import {AuthContext} from './context';
 import AppRouter from "./components/AppRouter";
 import {BrowserRouter} from "react-router-dom";
 import {AuthService} from "./services/AuthService";

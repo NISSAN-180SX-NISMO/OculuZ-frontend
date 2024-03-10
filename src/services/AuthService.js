@@ -12,10 +12,12 @@ export class AuthService {
         const response = await FetchService.post('http://localhost:8080/auth/signin', loginRequest);
 
         if (response.status !== 200) {
-            throw new Error(response.json().message);
+            const error = await response.json();
+            throw new Error(error.message);
         }
 
-        const data = await response.json();
+
+            const data = await response.json();
         let responseData = new JwtResponse(data);
         console.log("save in locale storage from func:signin - " + responseData.toString());
 
@@ -33,26 +35,43 @@ export class AuthService {
     }
 
 
-    static async authPostWithRefresh(url, body = {}, options = {}) {
+    static async authPostWithRefresh(url, body = {}, headers = {}, queryParams = {}, uriParams = {}) {
         const authToken = localStorage.getItem('authToken');
         let response;
 
         if (authToken) {
-            response = await FetchService.authPost(url, body, options);
+            response = await FetchService.authPost(url, body, headers, queryParams, uriParams);
+            if (response.status === 403) {
+                const refreshResponse = await this.tryRefresh(localStorage.getItem('refreshToken'));
+                if (refreshResponse.status === 200) {
+                    response = await FetchService.authPost(url, body, headers, queryParams, uriParams);
+                } else if (refreshResponse.status === 403) {
+                    window.location.href = `/login?redirect=${window.location.pathname}`;
+                }
+            }
         } else {
-            response = await FetchService.post(url, body, options);
+            response = await FetchService.post(url, body, headers, queryParams, uriParams);
         }
 
-        if (response.status === 403) {
-            const refreshResponse = await this.tryRefresh(localStorage.getItem('refreshToken'));
-            if (refreshResponse.status === 200) {
-                response = await FetchService.authPost(url, body, options);
-            } else if (refreshResponse.status === 403) {
-                // Сохраните текущий путь перед редиректом
-                const currentPath = window.location.pathname;
-                // Перенаправление на форму авторизации с передачей текущего пути в параметрах
-                window.location.href = `/login?redirect=${currentPath}`;
+        return response;
+    }
+
+    static async authGetWithRefresh(url, headers = {}, queryParams = {}, uriParams = {}) {
+        const authToken = localStorage.getItem('authToken');
+        let response;
+
+        if (authToken) {
+            response = await FetchService.authGet(url, headers, queryParams, uriParams);
+            if (response.status === 403) {
+                const refreshResponse = await this.tryRefresh(localStorage.getItem('refreshToken'));
+                if (refreshResponse.status === 200) {
+                    response = await FetchService.authGet(url, headers, queryParams, uriParams);
+                } else if (refreshResponse.status === 403) {
+                    window.location.href = `/login?redirect=${window.location.pathname}`;
+                }
             }
+        } else {
+            response = await FetchService.get(url, headers, queryParams, uriParams);
         }
 
         return response;
@@ -60,15 +79,9 @@ export class AuthService {
 
     static async signout() {
         const response = await FetchService.authPost('http://localhost:8080/auth/signout');
-        console.log("signout response: " + response.status);
+        console.log("signout status - " + response.status);
+        localStorage.clear();
 
-        if (response.status === 200) {
-            console.log("signout ok - " + response.status);
-            localStorage.clear();
-        } else {
-            console.log("signout not ok - " + response.status);
-            throw new Error('Failed to sign out');
-        }
     }
 
 }

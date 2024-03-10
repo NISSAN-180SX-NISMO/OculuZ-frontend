@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styles from './AuthPage.module.css'
 import Input from "../../UI/Atoms/Input/Input";
 import Button from "../../UI/Atoms/Button/Button";
@@ -31,13 +31,13 @@ const RegistPage = () => {
 
     };
 
-    useState(() => {
+    useEffect(() => {
         if (password !== passwordConfirm) {
             setError('Пароли не совпадают!');
         } else {
             setError(null);
         }
-    }, [passwordConfirm])
+    }, [passwordConfirm]); // Зависимости useEffect
 
     return (
         <div className={styles.authBody}>
