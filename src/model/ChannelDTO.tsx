@@ -15,4 +15,12 @@ class ChannelPageDTO {
     }
 }
 
-export { ChannelPageDTO };
+
+class CreateChannelRequest {
+    channelName: string;
+    constructor(data: Partial<ChannelPageDTO>) {
+        Object.assign(this, data);
+    }
+}
+
+export { ChannelPageDTO, CreateChannelRequest };

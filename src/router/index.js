@@ -5,6 +5,7 @@ import RegistPage from "../components/pages/Auth/RegistPage";
 import NotFoundPage from "../components/pages/NotFoundPage/NotFoundPage";
 import UserPageWrapper from "../components/pageWrappers/UserPageWrapper";
 import ChannelPageWrapper from "../components/pageWrappers/ChannelPageWrapper";
+import ChannelRegistPage from "../components/pages/Auth/ChannelRegistPage/ChannelRegistPage";
 
 
 
@@ -27,5 +28,6 @@ export const publicRoutes = [
 ]
 
 export const privateRoutes = [
+    {path: '/user/:username/create-channel', element: <ChannelRegistPage/>, exact: true},
     ...publicRoutes
 ]

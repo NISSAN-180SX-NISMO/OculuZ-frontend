@@ -3,10 +3,14 @@ import {AuthService} from "./AuthService";
 
 export class ChannelService {
     static async getChannelPage(channelName) {
-        if (localStorage.getItem('isAuth') === "true")
-            return FetchService.authGet(`http://localhost:8080/channel/${channelName}`);
-        else
-            return FetchService.get(`http://localhost:8080/channel/${channelName}`);
+        if (localStorage.getItem('isAuth') === "true") {
+            console.log("auth");
+            return await AuthService.authGetWithRefresh(`http://localhost:8080/channel/${channelName}`);
+        }
+        else {
+            console.log("not auth");
+            return await FetchService.get(`http://localhost:8080/channel/${channelName}`);
+        }
     }
 
     static async subscribe(channelName) {

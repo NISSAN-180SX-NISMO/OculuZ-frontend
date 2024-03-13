@@ -73,7 +73,7 @@ const UserPage = ({data}) => {
                         {activeTab === 'views' && isAuth && usernameFromToken === user.username && <UserViews/>}
                         {activeTab === 'playlists' && <UserPlaylists/>}
                         {activeTab === 'subscriptions' && <UserSubscriptions/>}
-                        {activeTab === 'channels' && <UserChannels/>}
+                        {activeTab === 'channels' && <UserChannels username={user.username}/>}
                     </div>
                 </div>
             </div>

@@ -46,10 +46,6 @@ export class FetchService {
                 ...headers
             }
         }).then(response => {
-            const newToken = response.headers.get('Authorization');
-            if (newToken) {
-                localStorage.setItem('authToken', newToken);
-            }
             return response;
         });
     }

@@ -55,7 +55,7 @@ const VideoPreview : React.FC<VideoPreviewProps> = ({video}) => {
                     <source srcSet={video.previewUrl}/>
                     <img
                         className={styles.thumbnailImage}
-                        src='../../../../../../public/resources/defaultPreview.jpeg'
+                        src={'../../../../../../public/resources/defaultPreview'}
                     />
                 </picture>
                 <div className={styles.videoDuration}>{formatVideoDuration(video.duration)}</div>
@@ -65,11 +65,15 @@ const VideoPreview : React.FC<VideoPreviewProps> = ({video}) => {
                     <div className={styles.videoTitle}>{video.title}</div>
                 </div>
                 <div className={styles.channelInfo}>
-                    <img src={video.channelAvatarUrl} alt="Channel avatar" className={styles.channelAvatar}/>
+                    <picture>
+                        <source srcSet={video.channelAvatarUrl}/>
+                        <img src='../../../../../../public/resources/defaultAvatar.jpeg' alt="avatar" className={styles.channelAvatar}/>
+                    </picture>
+
                     <span className={styles.videoStatsBody}>
                         <div className={styles.channelName}>{video.channelName}</div>
                         <div className={styles.videoStats}>{video.views} просмотров</div>
-                        <div className={styles.videoStats}>{formatPublicationDate(video.uploadDate)} назад</div>
+                        <div className={styles.videoStats}>{formatPublicationDate(video.uploadDate)}</div>
                     </span>
                 </div>
             </div>
