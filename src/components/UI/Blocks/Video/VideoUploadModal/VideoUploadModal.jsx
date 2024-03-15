@@ -1,15 +1,54 @@
-import React, { useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './VideoUploadModalStyle.module.css';
-import {FetchService} from "../../../../services/FetchService.js";
-import Input from "../../Atoms/Input/Input";
-import Button from "../../Atoms/Button/Button";
-import FileInput from "../../Atoms/FileInput/FileInput";
+import Input from "../../../Atoms/Input/Input";
+import Button from "../../../Atoms/Button/Button";
+import VideoPreview from "../VideoPreview/VideoPreview";
+import TextArea from "../../../Atoms/TextArea/TextArea";
+import VideoFileInput from "./VideoFileInput";
+import PreviewFileInput from "./PreviewFileInput";
+import ChannelSelect from "./ChannelSelect";
+import {VideoPreviewDTO} from "../../../../../model/VideoDTO.tsx";
 
-const VideoUploadModal = ({ isOpen, onClose }) => {
+const VideoUploadModal = ({isOpen, onClose}) => {
     const [fileName, setFileName] = useState('');
+    const [duration, setDuration] = useState('');
+    const [previewUrl, setPreviewUrl] = useState('');
+    const [channelName, setChannelName] = useState('');
+    const [channelAvatarUrl, setChannelAvatarUrl] = useState('');
+    const [videoMiniaturePreview: VideoPreviewDTO, setVideoMiniaturePreview] = useState( new VideoPreviewDTO());
+
+
+
+
+
 
     const videoFileRef = useRef();
-    const previewFileRef = useRef();
+
+    const [defaultVideo, setDefaultVideo] = useState({
+        id: "",
+        previewUrl: "",
+        channelAvatarUrl: "",
+        videoUrl: "",
+        title: "Название видео",
+        channelName: "Название канала",
+        duration: 0,
+        uploadDate: new Date(),
+        views: 0
+    });
+
+
+
+    useEffect(() => {
+        console.log("duration" + duration);
+        setDefaultVideo(prevState => ({
+            ...prevState,
+            title: fileName === '' ? 'Название видео' : fileName,
+            channelName: channelName === '' ? 'Название канала' : channelName,
+            channelAvatarUrl: channelAvatarUrl,
+            previewUrl: previewUrl === '' ? '' : previewUrl,
+            duration: !duration ? 0 : duration,
+        }));
+    }, [fileName, channelName, channelAvatarUrl, previewUrl, duration]);
 
     const handleUpload = async () => {
         const file = videoFileRef.current.files[0];
@@ -25,7 +64,7 @@ const VideoUploadModal = ({ isOpen, onClose }) => {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}` // Добавляем токен в заголовки запроса
             },
-            body: JSON.stringify({ fileName: file.name })
+            body: JSON.stringify({fileName: file.name})
         });
 
         if (!initResponse.ok) {
@@ -83,14 +122,31 @@ const VideoUploadModal = ({ isOpen, onClose }) => {
         onClose();
     };
 
+
     return (
         <div className={`${styles.modalBody} ${isOpen ? styles.open : ''}`} onClick={onClose}>
             <div className={styles.modal} onClick={e => e.stopPropagation()}>
-                <FileInput type="file" ref={videoFileRef} /><br />
-                {/*<Input type="text" value={fileName} onChange={e => setFileName(e.target.value)} placeholder="Введите имя файла" /><br />*/}
-                {/*<FileInput type="file" ref={previewFileRef} /><br />*/}
-                <Button onClick={onClose}>Отмена</Button>
-                <Button onClick={handleUpload}>Загрузить видео</Button>
+                <div className={styles.videoUploadBody}>
+                    <div className={styles.videoPrewiew}>
+                        {/*<VideoPreview video=/!*функция возвращающая VideoPreviewDTO*!//>*/}
+                        <VideoPreview video={defaultVideo}/>
+                        <div className={styles.solutionButtonGroup}>
+                            <Button onClick={onClose}>Отмена</Button>
+                            <Button onClick={handleUpload}>Загрузить видео</Button>
+                        </div>
+                    </div>
+                    <div className={styles.videoUploadModule}>
+                        <PreviewFileInput setPreviewUrl={setPreviewUrl} />
+                        <VideoFileInput setDuration={setDuration} setFileName={setFileName} />
+                        <Input
+                            placeholder={"Введите название видео"}
+                            value={fileName}
+                            onChange={(e) => setFileName(e.target.value)}
+                        />
+                        <ChannelSelect setChannelName={setChannelName} setChannelAvatarUrl={setChannelAvatarUrl}/>
+                        <TextArea placeholder={"Описание видео"}/>
+                    </div>
+                </div>
             </div>
         </div>
     );

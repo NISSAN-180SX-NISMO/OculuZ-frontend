@@ -47,7 +47,9 @@ const ChannelHead = ({
                 <ChannelHeadHeader headerUrl={headerUrl}/>
             </div>
             <div className={styles.channelInfoBody}>
-                <div className={styles.avatar}><Avatar avatarUrl={avatarUrl}/></div>
+                <div className={styles.avatar}>
+                    <Avatar avatarUrl={avatarUrl}/>
+                </div>
                 <div className={styles.channelInfoAndSubscribeButton}>
                     <div className={styles.channelInfo}>
                         <div className={styles.channelName}>{channelName}</div>

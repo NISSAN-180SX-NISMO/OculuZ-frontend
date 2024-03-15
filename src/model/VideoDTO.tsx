@@ -29,17 +29,20 @@ class VideoPage {
 
 class VideoPreviewDTO {
     constructor(data: Partial<VideoPreviewDTO>) {
+        if (data && data.uploadDate) {
+            data.uploadDate = new Date(data.uploadDate);
+        }
         Object.assign(this, data);
     }
-    public id: string;
-    public previewUrl: string;
-    public channelAvatarUrl: string;
-    public videoUrl: string;
-    public title: string;
-    public channelName: string;
-    public duration: number;
-    public uploadDate: Date;
-    public views: number;
+    public id: string = "";
+    public previewUrl: string = "";
+    public channelAvatarUrl: string = "";
+    public videoUrl: string = "";
+    public title: string = "";
+    public channelName: string = "";
+    public duration: number = 0;
+    public uploadDate: Date = new Date();
+    public views: number = 0;
 }
 
 export { VideoPage, VideoPreviewDTO };

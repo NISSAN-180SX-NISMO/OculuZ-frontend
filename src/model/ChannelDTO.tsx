@@ -23,4 +23,16 @@ class CreateChannelRequest {
     }
 }
 
-export { ChannelPageDTO, CreateChannelRequest };
+class ChannelMiniatureDTO {
+    name: string;
+    avatarUrl: string;
+    subscribersCount: number;
+
+
+    constructor(data: Partial<ChannelMiniatureDTO>) {
+        Object.assign(this, data);
+    }
+
+}
+
+export { ChannelPageDTO, CreateChannelRequest, ChannelMiniatureDTO };

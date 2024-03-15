@@ -6,6 +6,8 @@
     padding: 10px;
     margin: 10px;
     max-height: 70px;
+    position: relative; /* Добавьте это */
+    z-index: 5 !important;
 }
 
 .navigateButtons {

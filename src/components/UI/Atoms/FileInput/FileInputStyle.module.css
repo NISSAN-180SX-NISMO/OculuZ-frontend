@@ -1,0 +1,19 @@
+.input {
+    display: none;
+}
+
+.inputBody {
+    display: flex;
+    flex-direction: row;
+}
+
+.choiceButton {
+
+}
+
+.fileName {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    font-family: "JetBrains Mono", monospace;
+}

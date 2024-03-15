@@ -2,15 +2,23 @@
     display: flex;
     align-items: flex-start;
     height: calc(100vh - 90px);
-
 }
 
 .navbar {
     min-width: 500px !important;
+    z-index: 5;
 }
 
 .mainPagePayload {
-    width: 100%;
-    overflow-y: auto; /* Включаем вертикальную прокрутку */
-    scrollbar-width: none; /* Для Firefox */
+    box-sizing: border-box;
+    position: absolute;
+    top: 0; /* Начинаем с верхнего края */
+    left: 0; /* Начинаем с левого края */
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    padding-left: 220px; /* Пододвигаем контент на ширину левого навбара */
+    padding-top: 90px; /* Пододвигаем контент на высоту хедера */
+    overflow-y: auto;
+    scrollbar-width: none;
 }

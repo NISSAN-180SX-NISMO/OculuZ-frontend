@@ -19,14 +19,5 @@
 .userPayload {
     background-color: #2a2a2a;
     height: calc(100vh - 280px);
-    padding: 10px;
     margin-right: 10px;
-
-
-
-    color: white;
-    font-family: "JetBrains Mono", monospace;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

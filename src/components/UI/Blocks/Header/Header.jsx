@@ -1,12 +1,11 @@
 import React, {useContext, useState} from 'react';
 import styles from './HeaderStyle.module.css';
-import Logo from "../../Atoms/Logo/Logo";
 import SearchComponent from "../../Atoms/SearchComponent/SearchComponent";
 import IconButton from "../../Atoms/IconButton/IconButton";
 import Sidebar from "../Sidebar/Sidebar";
 import LogoAlt from "../../Atoms/Logo/LogoAlt";
 import {AuthContext} from "../../../../context";
-import VideoUploadModal from "../VideoUploadModal/VideoUploadModal"; // Импортируйте VideoUploadModal
+import VideoUploadModal from "../Video/VideoUploadModal/VideoUploadModal"; // Импортируйте VideoUploadModal
 
 const Header = () => {
     const {isAuth} = useContext(AuthContext);

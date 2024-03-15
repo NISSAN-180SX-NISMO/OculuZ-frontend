@@ -5,11 +5,7 @@ import Navbar from "../../UI/Blocks/Navbar/Navbar";
 import VideoGrid from "../../UI/Blocks/Video/VideoGrid/VideoGrid";
 import {apiService} from "../../../services/apiService";
 import {VideoPreviewDTO} from "../../../model/VideoDTO.tsx";
-import {Button} from "react-bootstrap";
-import {AuthService} from "../../../services/AuthService";
-import {FetchService} from "../../../services/FetchService";
-import {useNavigate} from 'react-router-dom';
-import {TokenRefreshResponse} from "../../../model/AuthDTO.tsx";
+
 
 const MainPage = () => {
     const [videos: VideoPreviewDTO, setVideos] = useState([]);

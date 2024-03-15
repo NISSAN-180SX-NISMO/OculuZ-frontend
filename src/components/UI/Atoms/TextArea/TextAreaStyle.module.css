@@ -1,0 +1,27 @@
+.body {
+    resize: none;
+    /*width: calc(100% - 20px);*/
+    /*height: calc(100% - 20px);    */
+    width: 100% !important;
+    height: 100% !important;
+    overflow: auto;
+    box-sizing: border-box;
+
+    background-color: #2a2a2a;
+    color: white;
+    font-family: "JetBrains Mono", monospace;
+    outline: 0;
+    border: 1px solid #6427ec;
+    padding: 5px;
+}
+
+.body:hover {
+    border: 1px solid #6427ec;
+    padding: 5px;
+}
+
+.body:focus {
+    outline: 0;
+    border: 3px solid #6427ec;
+    padding: 3px;
+}

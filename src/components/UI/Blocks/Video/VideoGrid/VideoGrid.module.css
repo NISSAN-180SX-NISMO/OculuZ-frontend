@@ -4,10 +4,22 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 10px;
     padding-right: 10px;
-    height: calc(100vh - 90px);
     overflow-y: auto; /* Включаем вертикальную прокрутку */
     scrollbar-width: none; /* Для Firefox */
+    /*height: calc(100vh - 90px);*/
+
+
+    box-sizing: border-box;
+    position: absolute;
+    top: 90px; /* Начинаем с верхнего края */
+    left: 0; /* Начинаем с левого края */
+    width: 100vw;
+    max-width: 100vw;
+    height: calc(100vw - 90px);
+    padding-left: 220px; /* Пододвигаем контент на ширину левого навбара */
 }
+
+
 
 .gridContainer::-webkit-scrollbar {
     display: none; /* Убираем полосу прокрутки у Chrome */

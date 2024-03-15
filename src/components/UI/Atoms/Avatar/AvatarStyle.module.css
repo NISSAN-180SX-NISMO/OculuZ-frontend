@@ -2,22 +2,36 @@
     box-sizing: border-box;
     border: 2px solid #6327ea;
     border-radius: 50%;
-    width: 100%;
     height: 100%;
-
-
+    font-size: 1em;
 }
 
 .avatar {
     box-sizing: border-box;
     border: 5px solid #2A2A2AFF;
     border-radius: 50%;
-    width: 100%;
+    aspect-ratio: 1 / 1;
     height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: "JetBrains Mono", monospace;
     color: white;
     background-color: #6327ea;
+    font-size: 1em;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.smile {
+    font-size: 1em; /* Измените это значение в соответствии с вашими потребностями */
+}
+
+.smallAvatar .avatar {
+    border: none;
 }
