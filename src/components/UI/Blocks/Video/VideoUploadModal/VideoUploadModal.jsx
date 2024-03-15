@@ -17,6 +17,42 @@ const VideoUploadModal = ({isOpen, onClose}) => {
     const [channelAvatarUrl, setChannelAvatarUrl] = useState('');
     const [videoMiniaturePreview: VideoPreviewDTO, setVideoMiniaturePreview] = useState( new VideoPreviewDTO());
 
+    const [previewFile, setPreviewFile] = useState(null);
+    const [videoFile, setVideoFile] = useState(null);
+
+    const handlePreviewFileChange = (e) => {
+        setPreviewFile(e.target.files[0]);
+    };
+
+    const handleVideoFileChange = (e) => {
+        setVideoFile(e.target.files[0]);
+    };
+
+    const uploadPreviewFile = async () => {
+        const formData = new FormData();
+        formData.append('file', previewFile);
+
+        try {
+            const response = await fetch('http://localhost:8080/preview/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const data = await response.json();
+
+            if (data.previewUrl) {
+                console.log(`Preview URL: ${data.previewUrl}`);
+            } else if (data.message) {
+                console.log(`Error message: ${data.message}`);
+            }
+        } catch (error) {
+            console.error(`There has been a problem with your fetch operation: ${error.message}`);
+        }
+    };
 
 
 
@@ -24,23 +60,13 @@ const VideoUploadModal = ({isOpen, onClose}) => {
 
     const videoFileRef = useRef();
 
-    const [defaultVideo, setDefaultVideo] = useState({
-        id: "",
-        previewUrl: "",
-        channelAvatarUrl: "",
-        videoUrl: "",
-        title: "Название видео",
-        channelName: "Название канала",
-        duration: 0,
-        uploadDate: new Date(),
-        views: 0
-    });
+
 
 
 
     useEffect(() => {
         console.log("duration" + duration);
-        setDefaultVideo(prevState => ({
+        setVideoMiniaturePreview(prevState => ({
             ...prevState,
             title: fileName === '' ? 'Название видео' : fileName,
             channelName: channelName === '' ? 'Название канала' : channelName,
@@ -129,15 +155,15 @@ const VideoUploadModal = ({isOpen, onClose}) => {
                 <div className={styles.videoUploadBody}>
                     <div className={styles.videoPrewiew}>
                         {/*<VideoPreview video=/!*функция возвращающая VideoPreviewDTO*!//>*/}
-                        <VideoPreview video={defaultVideo}/>
+                        <VideoPreview video={videoMiniaturePreview}/>
                         <div className={styles.solutionButtonGroup}>
                             <Button onClick={onClose}>Отмена</Button>
-                            <Button onClick={handleUpload}>Загрузить видео</Button>
+                            <Button onClick={uploadPreviewFile}>Загрузить видео</Button>
                         </div>
                     </div>
                     <div className={styles.videoUploadModule}>
-                        <PreviewFileInput setPreviewUrl={setPreviewUrl} />
-                        <VideoFileInput setDuration={setDuration} setFileName={setFileName} />
+                        <PreviewFileInput setPreviewUrl={setPreviewUrl}  onParentClick={handlePreviewFileChange}/>
+                        <VideoFileInput setDuration={setDuration} setFileName={setFileName} onParentClick={handleVideoFileChange}/>
                         <Input
                             placeholder={"Введите название видео"}
                             value={fileName}

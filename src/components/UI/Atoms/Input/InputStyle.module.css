@@ -20,3 +20,7 @@
     background-color: transparent;
     font-family: "JetBrains Mono", monospace;
 }
+
+.error {
+    color: red;
+}

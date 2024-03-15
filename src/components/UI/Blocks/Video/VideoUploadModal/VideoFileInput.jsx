@@ -1,9 +1,18 @@
 import React, { useRef } from 'react';
 import FileInput from "../../../Atoms/FileInput/FileInput";
-import formatDuration from "../../../../../utils/formatDuration";
 
 const VideoFileInput = ({ setFileName, setDuration }) => {
-    const videoFileRef = useRef();
+
+    const checkFile = (file) => {
+        if (file) {
+            // Проверяем, является ли файл видео
+            if (!file.type.startsWith('video/')) {
+                return 'Файл должен быть видео!';
+            }
+        }
+
+        return null;
+    };
 
     const handleVideoFileChange = (e) => {
         if (e.target.files[0]) {
@@ -33,7 +42,7 @@ const VideoFileInput = ({ setFileName, setDuration }) => {
 
 
     return (
-        <FileInput type="file" ref={videoFileRef} onChange={handleVideoFileChange}>
+        <FileInput onChange={handleVideoFileChange} checkFile={checkFile}>
             Выберите видео
         </FileInput>
     );
