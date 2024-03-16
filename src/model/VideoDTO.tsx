@@ -37,7 +37,7 @@ class VideoPreviewDTO {
     public id: string = "";
     public previewUrl: string = "";
     public channelAvatarUrl: string = "";
-    public videoUrl: string = "";
+    public url: string = "";
     public title: string = "";
     public channelName: string = "";
     public duration: number = 0;
@@ -45,4 +45,22 @@ class VideoPreviewDTO {
     public views: number = 0;
 }
 
-export { VideoPage, VideoPreviewDTO };
+class NewVideoDTO {
+    title: string;
+    url: string;
+    description: string; //
+    duration: Date;
+    previewUrl: string;
+    uploadDate: Date;
+    adultContent: boolean; //
+    channelName: string;
+
+    constructor(data: Partial<NewVideoDTO>) {
+        if (data && data.uploadDate) {
+            data.uploadDate = new Date(data.uploadDate);
+        }
+        Object.assign(this, data);
+    }
+}
+
+export { VideoPage, VideoPreviewDTO, NewVideoDTO };

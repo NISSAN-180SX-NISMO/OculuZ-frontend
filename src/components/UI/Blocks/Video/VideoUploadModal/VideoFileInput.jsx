@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import FileInput from "../../../Atoms/FileInput/FileInput";
 
-const VideoFileInput = ({ setFileName, setDuration }) => {
+const VideoFileInput = ({ setFileName, setDuration, onParentClick }) => {
 
     const checkFile = (file) => {
         if (file) {
@@ -37,6 +37,9 @@ const VideoFileInput = ({ setFileName, setDuration }) => {
             // Если файл не выбран, устанавливаем fileName и duration в null
             setFileName("");
             setDuration(0);
+        }
+        if (onParentClick) {
+            onParentClick(e);
         }
     };
 
