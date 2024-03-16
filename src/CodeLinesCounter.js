@@ -24,3 +24,4 @@ const frontLines = countLinesInDirectory('C:\\Users\\User\\Desktop\\OculuZ\\fron
 const backLines = countLinesInDirectory('C:\\Users\\User\\Desktop\\OculuZ\\backend\\src\\main\\java\\com\\zuluco\\oculuz');
 console.log(`Total lines in C:\\Users\\User\\Desktop\\OculuZ\\frontend\\src directory: ${frontLines}`);
 console.log(`Total lines in C:\\Users\\User\\Desktop\\OculuZ\\backend\\src\\main\\java\\com\\zuluco\\oculuz directory: ${backLines}`);
+console.log("TOTAL: ", frontLines + backLines, "LINES")

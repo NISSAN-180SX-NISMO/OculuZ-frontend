@@ -5,6 +5,7 @@ import Navbar from "../../UI/Blocks/Navbar/Navbar";
 import VideoGrid from "../../UI/Blocks/Video/VideoGrid/VideoGrid";
 import {apiService} from "../../../services/apiService";
 import {VideoPreviewDTO} from "../../../model/VideoDTO.tsx";
+import {VideoService} from "../../../services/VideoService";
 
 
 const MainPage = () => {
@@ -13,7 +14,7 @@ const MainPage = () => {
     useEffect(() => {
         const fetchVideos = async () => {
             try {
-                const response = await apiService.getVideoList();
+                const response = await VideoService.getAll();
                 if (!response.ok) {
                     console.error('Network response was not ok');
                 }

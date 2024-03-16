@@ -1,28 +1,28 @@
-import {Commentary} from "./CommentDTO";
+class VideoPageDTO {
 
-class VideoPage {
-    constructor(
-        public id: number,
-        public channelId: number,
-        public url: string,
-        public previewUrl: string,
-        public channelAvatarUrl: string,
-        public title: string,
-        public channelName: string,
-        public description: string,
-        public duration: number,
-        public uploadDate: Date,
-        public editDate: Date,
-        public monetized: boolean,
-        public adultContent: boolean,
-        public banned: boolean,
-        public views: number,
-        public likes: number,
-        public dislikes: number,
-        public commentBranchId: number
-    ) {}
+    public id: string;
+    public url: string;
+    public previewUrl: string;
+    public channelAvatarUrl: string;
+    public title: string;
+    public channelName: string;
+    public description: string;
+    public duration: number;
+    public uploadDate: Date;
+    public editDate: Date;
+    public monetized: boolean;
+    public adultContent: boolean;
+    public banned: boolean;
+    public views: number;
+    public likes: number;
+    public dislikes: number;
+    public commentBranchId: number;
 
-    update(data: Partial<VideoPage>) {
+
+    constructor(data: Partial<VideoPageDTO>) {
+        if (data && data.uploadDate) {
+            data.uploadDate = new Date(data.uploadDate);
+        }
         Object.assign(this, data);
     }
 }
@@ -34,6 +34,7 @@ class VideoPreviewDTO {
         }
         Object.assign(this, data);
     }
+
     public id: string = "";
     public previewUrl: string = "";
     public channelAvatarUrl: string = "";
@@ -63,4 +64,4 @@ class NewVideoDTO {
     }
 }
 
-export { VideoPage, VideoPreviewDTO, NewVideoDTO };
+export {VideoPageDTO, VideoPreviewDTO, NewVideoDTO};

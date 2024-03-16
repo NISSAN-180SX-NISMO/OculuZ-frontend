@@ -6,6 +6,7 @@ import NotFoundPage from "../components/pages/NotFoundPage/NotFoundPage";
 import UserPageWrapper from "../components/pageWrappers/UserPageWrapper";
 import ChannelPageWrapper from "../components/pageWrappers/ChannelPageWrapper";
 import ChannelRegistPage from "../components/pages/Auth/ChannelRegistPage/ChannelRegistPage";
+import VideoPageWrapper from "../components/pageWrappers/VideoPageWrapper";
 
 
 
@@ -19,6 +20,11 @@ export const publicRoutes = [
     {
         path: '/channel/:channelName/:tab?',
         element: <ChannelPageWrapper />,
+        exact: true
+    },
+    {
+        path: '/video/:videoId',
+        element: <VideoPageWrapper />,
         exact: true
     },
     {path: '/login', element: <LoginPage/>, exact: true},

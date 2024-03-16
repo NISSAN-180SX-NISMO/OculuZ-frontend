@@ -1,22 +1,20 @@
-/* VideoGrid.module.css */
 .gridContainer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 10px;
     padding-right: 10px;
-    overflow-y: auto; /* Включаем вертикальную прокрутку */
-    scrollbar-width: none; /* Для Firefox */
-    /*height: calc(100vh - 90px);*/
-
+    overflow-y: auto;
+    scrollbar-width: none;
+    align-content: start; /* Добавьте это свойство */
 
     box-sizing: border-box;
     position: absolute;
-    top: 90px; /* Начинаем с верхнего края */
-    left: 0; /* Начинаем с левого края */
+    top: 90px;
+    left: 0;
     width: 100vw;
     max-width: 100vw;
     height: calc(100vw - 90px);
-    padding-left: 220px; /* Пододвигаем контент на ширину левого навбара */
+    padding-left: 220px;
 }
 
 

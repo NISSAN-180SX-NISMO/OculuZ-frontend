@@ -51,8 +51,8 @@ const VideoUploadModal = ({isOpen, onClose}) => {
     const handleUpload = async () => {
         const upload = new FileUploadService();
         try {
-            const videoUrl = await upload.uploadPreviewToS3(previewFile);
-            const previewUrl = await upload.uploadVideoToS3(videoFile);
+            const previewUrl = await upload.uploadPreviewToS3(previewFile);
+            const videoUrl = await upload.uploadVideoToS3(videoFile);
             await upload.uploadVideoToServer(new NewVideoDTO({
                 title: fileName,
                 url: videoUrl,

@@ -24,7 +24,7 @@ class ApiService {
 
     async getVideoList(username = null) {
         const params = username ? { username } : {};
-        return this.get('./requests/videos.json', params);
+        return this.get('http://localhost:8080/video', params);
     }
 
     async getCurrentUser() {

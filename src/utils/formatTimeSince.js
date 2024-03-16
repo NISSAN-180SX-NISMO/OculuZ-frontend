@@ -1,6 +1,24 @@
+function addLocalOffset(date) {
+    // Получаем смещение часового пояса в минутах
+    let timezoneOffsetMinutes = new Date().getTimezoneOffset();
+
+    // Преобразуем смещение в миллисекунды
+    let timezoneOffsetMilliseconds = timezoneOffsetMinutes * 60 * 1000;
+
+    // Добавляем смещение к времени сервера
+    date = new Date(date.getTime() + timezoneOffsetMilliseconds);
+
+    return date
+}
+
 function formatTimeSince(date) {
-    const now = new Date();
+    let now = new Date();
+
+    now = addLocalOffset(now);
+
     const diff = now - date; // Разница в миллисекундах
+
+
 
     // Определения временных интервалов в миллисекундах
     const minute = 60 * 1000; // 60 секунд

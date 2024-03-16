@@ -28,6 +28,8 @@ const VideoFileInput = ({ setFileName, setDuration, onParentClick }) => {
 
             videoElement.addEventListener("loadedmetadata", () => {
 
+                console.log("dur: " + videoElement.duration);
+
                 setDuration(videoElement.duration);
 
                 // Освобождаем созданный URL объекта
