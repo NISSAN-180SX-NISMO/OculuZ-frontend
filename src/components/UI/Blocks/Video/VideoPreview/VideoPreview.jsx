@@ -9,7 +9,7 @@ interface VideoPreviewProps {
     video: VideoPreviewDTO;
 };
 
-const VideoPreview : React.FC<VideoPreviewProps> = ({video}) => {
+const VideoPreview: React.FC<VideoPreviewProps> = ({video}) => {
     return (
         <div className={styles.backlight}>
             <div className={styles.videoPreviewBody}>

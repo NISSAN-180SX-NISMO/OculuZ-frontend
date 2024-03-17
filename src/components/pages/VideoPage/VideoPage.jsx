@@ -1,7 +1,14 @@
 import React, {useEffect} from 'react';
 import Header from "../../UI/Blocks/Header/Header";
-import {VideoPageDTO} from "../../../model/VideoDTO.tsx";
-import Input from "../../UI/Atoms/Input/Input";
+import {VideoPageDTO, VideoPreviewDTO} from "../../../model/VideoDTO.tsx";
+import styles from './VideoPageStyle.module.css';
+import Avatar from "../../UI/Atoms/Avatar/Avatar";
+import formatTimeSince from "../../../utils/formatTimeSince";
+import Button from "../../UI/Atoms/Button/Button";
+import TextArea from "../../UI/Atoms/TextArea/TextArea";
+import ItemButton from "../../UI/Atoms/ItemButton/ItemButton";
+import VideoPreview from "../../UI/Blocks/Video/VideoPreview/VideoPreview";
+import SubButton from "../../UI/Atoms/SubButton/SubButton";
 
 const VideoPage = ({data}) => {
 
@@ -12,21 +19,154 @@ const VideoPage = ({data}) => {
     const video = new VideoPageDTO(data);
 
     return (
-        <div>
+        <>
             <Header/>
-            <Input type="text" value={video.id} readOnly/>
-            <Input type="text" value={video.title} readOnly/>
-            <Input type="text" value={video.description} readOnly/>
-            <Input type="text" value={video.views} readOnly/>
-            <Input type="text" value={video.likes} readOnly/>
-            <Input type="text" value={video.dislikes} readOnly/>
-            <Input type="text" value={video.channelName} readOnly/>
-            <Input type="text" value={video.channelAvatarUrl} readOnly/>
-            <Input type="text" value={video.uploadDate} readOnly/>
-            <Input type="text" value={video.duration} readOnly/>
-            <Input type="text" value={video.previewUrl} readOnly/>
+            <div className={styles.videoPagePayload}>
+                <div className={styles.videoPagePayload__video}>
+                    <video width="100%" height="calc(100% * 9 / 16)" controls src={video.url} poster={video.previewUrl}/>
+                    <div className={styles.videoPagePayload__info}>
+                        <Avatar avatarUrl={video.channelAvatarUrl}/>
+                        <div className={styles.videoStatsBody}>
+                            <div className={styles.channelName}>{video.channelName}</div>
+                            <div className={styles.videoStats}>
+                                {video.views} просмотров,{" "}{formatTimeSince(video.uploadDate)}
+                            </div>
+                            <div className={styles.videoStats}>
+                                1.726.351 Подписчиков
+                            </div>
+                        </div>
+                        <div className={styles.ButtonGroup}>
+                            <SubButton channelName={video.channelName}/>
+                            <Button >Лайк</Button>
+                            <Button >Дизлайк</Button>
+                        </div>
+                    </div>
+                    <div className={styles.description}>
+                        <TextArea value={video.description} readonly={true}/>
+                    </div>
+                    <div className={styles.comment}>
+                        <TextArea placeholder={"Напишите комментарий"}/>
+                    </div>
+                    <div className={styles.commentSubmitButton}>
+                        <Button>Отправить</Button>
+                    </div>
 
-        </div>
+                </div>
+
+                <div className={styles.metaContent}>
+                    <div className={styles.contentMap}>
+                        content map
+                    </div>
+                    <div className={styles.videoList}>
+                        <ItemButton>
+                            <VideoPreview video={new VideoPreviewDTO({
+                                id: video.id,
+                                previewUrl:  video.previewUrl,
+                                channelAvatarUrl: video.channelAvatarUrl,
+                                url: video.url,
+                                title: video.title,
+                                channelName: video.channelName,
+                                duration: video.duration,
+                                uploadDate: video.uploadDate,
+                                views: video.views
+                            })}/>
+                        </ItemButton>
+                        <ItemButton>
+                            <VideoPreview video={new VideoPreviewDTO({
+                                id: video.id,
+                                previewUrl:  video.previewUrl,
+                                channelAvatarUrl: video.channelAvatarUrl,
+                                url: video.url,
+                                title: video.title,
+                                channelName: video.channelName,
+                                duration: video.duration,
+                                uploadDate: video.uploadDate,
+                                views: video.views
+                            })}/>
+                        </ItemButton>
+                        <ItemButton>
+                            <VideoPreview video={new VideoPreviewDTO({
+                                id: video.id,
+                                previewUrl:  video.previewUrl,
+                                channelAvatarUrl: video.channelAvatarUrl,
+                                url: video.url,
+                                title: video.title,
+                                channelName: video.channelName,
+                                duration: video.duration,
+                                uploadDate: video.uploadDate,
+                                views: video.views
+                            })}/>
+                        </ItemButton>
+                        <ItemButton>
+                            <VideoPreview video={new VideoPreviewDTO({
+                                id: video.id,
+                                previewUrl:  video.previewUrl,
+                                channelAvatarUrl: video.channelAvatarUrl,
+                                url: video.url,
+                                title: video.title,
+                                channelName: video.channelName,
+                                duration: video.duration,
+                                uploadDate: video.uploadDate,
+                                views: video.views
+                            })}/>
+                        </ItemButton>
+                        <ItemButton>
+                            <VideoPreview video={new VideoPreviewDTO({
+                                id: video.id,
+                                previewUrl:  video.previewUrl,
+                                channelAvatarUrl: video.channelAvatarUrl,
+                                url: video.url,
+                                title: video.title,
+                                channelName: video.channelName,
+                                duration: video.duration,
+                                uploadDate: video.uploadDate,
+                                views: video.views
+                            })}/>
+                        </ItemButton>
+                        <ItemButton>
+                            <VideoPreview video={new VideoPreviewDTO({
+                                id: video.id,
+                                previewUrl:  video.previewUrl,
+                                channelAvatarUrl: video.channelAvatarUrl,
+                                url: video.url,
+                                title: video.title,
+                                channelName: video.channelName,
+                                duration: video.duration,
+                                uploadDate: video.uploadDate,
+                                views: video.views
+                            })}/>
+                        </ItemButton>
+                        <ItemButton>
+                            <VideoPreview video={new VideoPreviewDTO({
+                                id: video.id,
+                                previewUrl:  video.previewUrl,
+                                channelAvatarUrl: video.channelAvatarUrl,
+                                url: video.url,
+                                title: video.title,
+                                channelName: video.channelName,
+                                duration: video.duration,
+                                uploadDate: video.uploadDate,
+                                views: video.views
+                            })}/>
+                        </ItemButton>
+                        <ItemButton>
+                            <VideoPreview video={new VideoPreviewDTO({
+                                id: video.id,
+                                previewUrl:  video.previewUrl,
+                                channelAvatarUrl: video.channelAvatarUrl,
+                                url: video.url,
+                                title: video.title,
+                                channelName: video.channelName,
+                                duration: video.duration,
+                                uploadDate: video.uploadDate,
+                                views: video.views
+                            })}/>
+                        </ItemButton>
+                    </div>
+                </div>
+
+            </div>
+        </>
     );
 };
 

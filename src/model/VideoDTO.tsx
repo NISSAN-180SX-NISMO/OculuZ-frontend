@@ -35,15 +35,15 @@ class VideoPreviewDTO {
         Object.assign(this, data);
     }
 
-    public id: string = "";
-    public previewUrl: string = "";
-    public channelAvatarUrl: string = "";
-    public url: string = "";
-    public title: string = "";
-    public channelName: string = "";
-    public duration: number = 0;
-    public uploadDate: Date = new Date();
-    public views: number = 0;
+        public id: string = "";
+        public previewUrl: string = "";
+        public channelAvatarUrl: string = "";
+        public url: string = "";
+        public title: string = "";
+        public channelName: string = "";
+        public duration: number = 0;
+        public uploadDate: Date = new Date();
+        public views: number = 0;
 }
 
 class NewVideoDTO {

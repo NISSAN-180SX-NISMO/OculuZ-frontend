@@ -20,4 +20,8 @@ export class ChannelService {
     static async unsubscribe(channelName) {
         return AuthService.authPostWithRefresh(`http://localhost:8080/channel/${channelName}`,{action: "unsubscribe"});
     }
+
+    static async checkSubscription(channelName) {
+        return await AuthService.authGetWithRefresh(`http://localhost:8080/channel/${channelName}/check-subscription`);
+    }
 }
