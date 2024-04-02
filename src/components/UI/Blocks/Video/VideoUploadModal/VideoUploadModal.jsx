@@ -18,7 +18,9 @@ const VideoUploadModal = ({isOpen, onClose}) => {
     const [channelName, setChannelName] = useState('');
     const [channelAvatarUrl, setChannelAvatarUrl] = useState('');
     const [description, setDescription] = useState('');
-    const [videoMiniaturePreview: VideoPreviewDTO, setVideoMiniaturePreview] = useState( new VideoPreviewDTO());
+    const date = new Date();
+    date.setHours(date.getHours() - 3);
+    const [videoMiniaturePreview: VideoPreviewDTO, setVideoMiniaturePreview] = useState( new VideoPreviewDTO({uploadDate: date}));
 
     const [previewFile, setPreviewFile] = useState(null);
     const [videoFile, setVideoFile] = useState(null);
@@ -30,6 +32,8 @@ const VideoUploadModal = ({isOpen, onClose}) => {
     const handleVideoFileChange = (e) => {
         setVideoFile(e.target.files[0]);
     };
+
+
 
 
     useEffect(() => {
@@ -44,7 +48,6 @@ const VideoUploadModal = ({isOpen, onClose}) => {
             duration: !duration ? 0 : duration,
         }));
     }, [fileName, channelName, channelAvatarUrl, previewUrl, duration]);
-
 
 
 

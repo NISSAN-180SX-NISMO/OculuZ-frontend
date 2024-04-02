@@ -17,6 +17,7 @@ class VideoPageDTO {
     public likes: number;
     public dislikes: number;
     public commentBranchId: number;
+    public subscribersCount: number;
 
 
     constructor(data: Partial<VideoPageDTO>) {

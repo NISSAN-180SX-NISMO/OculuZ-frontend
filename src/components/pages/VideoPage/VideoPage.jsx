@@ -12,18 +12,21 @@ import SubButton from "../../UI/Atoms/SubButton/SubButton";
 
 const VideoPage = ({data}) => {
 
+
     useEffect(() => {
         console.log(data)
     }, []);
 
     const video = new VideoPageDTO(data);
+    const [subCount, setSubCount] = React.useState(video.subscribersCount);
 
     return (
         <>
             <Header/>
             <div className={styles.videoPagePayload}>
                 <div className={styles.videoPagePayload__video}>
-                    <video width="100%" height="calc(100% * 9 / 16)" controls src={video.url} poster={video.previewUrl}/>
+                    <video className={styles.videoPoster} width="100%" height="calc(100% * 9 / 16)" controls
+                           src={video.url} poster={video.previewUrl}/>
                     <div className={styles.videoPagePayload__info}>
                         <Avatar avatarUrl={video.channelAvatarUrl}/>
                         <div className={styles.videoStatsBody}>
@@ -32,11 +35,11 @@ const VideoPage = ({data}) => {
                                 {video.views} просмотров,{" "}{formatTimeSince(video.uploadDate)}
                             </div>
                             <div className={styles.videoStats}>
-                                1.726.351 Подписчиков
+                                {subCount} Подписчиков
                             </div>
                         </div>
                         <div className={styles.ButtonGroup}>
-                            <SubButton channelName={video.channelName}/>
+                            <SubButton channelName={video.channelName} subCount={subCount} setSubCount={setSubCount}/>
                             <Button >Лайк</Button>
                             <Button >Дизлайк</Button>
                         </div>

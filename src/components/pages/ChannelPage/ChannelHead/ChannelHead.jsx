@@ -45,7 +45,7 @@ const ChannelHead = ({
     return (
         <div className={styles.channelHeadBody}>
             <div className={styles.channelHeadHeader}>
-                <ChannelHeadHeader headerUrl={headerUrl}/>
+                <ChannelHeadHeader headerUrl={"https://s3.timeweb.cloud/fd22a2a2-oculuz-media-storage/header/defaultChannelHeader.jpg"}/>
             </div>
             <div className={styles.channelInfoBody}>
                 <div className={styles.avatar}>

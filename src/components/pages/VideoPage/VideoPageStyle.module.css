@@ -14,10 +14,18 @@
     overflow-y: scroll;
     scrollbar-width: none;
     flex: 16;
+
 }
 
 .videoPagePayload__video::-webkit-scrollbar {
     display: none; /* Убираем полосу прокрутки у Chrome */
+}
+
+.videoPoster {
+    object-fit: cover;
+    width: 100%;
+aspect-ratio: 16/9;
+
 }
 
 
@@ -70,6 +78,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 
 
 .metaContent {

@@ -5,7 +5,7 @@ const ChannelHeadHeader = ({headerUrl}) => {
     return (
         <picture>
             <source srcSet={headerUrl} type="image/webp"/>
-            <img src={'/resources/defaultChannelHeader.jpg'} alt="header" className={styles.headerImage}/>
+            <img src={'https://s3.timeweb.cloud/fd22a2a2-oculuz-media-storage/header/defaultChannelHeader.jpg'} alt="header" className={styles.headerImage}/>
         </picture>
     );
 };
